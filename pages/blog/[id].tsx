@@ -16,11 +16,11 @@ export const Text = ({ text }) => {
         return (
             <span
                 className={[
-                    // bold ? styles.bold : "",
+                    bold ? "font-bold" : "",
                     // code ? styles.code : "",
-                    // italic ? styles.italic : "",
-                    // strikethrough ? styles.strikethrough : "",
-                    // underline ? styles.underline : "",
+                    italic ? "italic" : "",
+                    strikethrough ? "line-through" : "",
+                    underline ? "underline" : "",
                 ].join(" ")}
                 style={color !== "default" ? { color } : {}}
             >
