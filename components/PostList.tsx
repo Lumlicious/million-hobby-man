@@ -8,7 +8,7 @@ const PostList = ({ posts }: any) => {
                 <div className="flex flex-wrap -m-4">
                     {
                         posts.map((post: PostData) => {
-                            return (<Card {...post} />)
+                            return (<Card key={post.id} {...post} />)
                         })
                     }
                 </div>

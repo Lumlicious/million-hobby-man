@@ -1,17 +1,19 @@
 import CodeBlock from "@/components/Codeblock";
 import { Fragment } from "react";
 
-export const Text = ({ text }: any) => {
+export const Text = ({ text }: any, id?: string | number) => {
     if (!text) {
         return null;
     }
-    return text.map((value: any) => {
+    id = id || Math.floor(Math.random() * (100000 - 0 + 1));
+    return text.map((value: any, i: number) => {
         const {
             annotations: { bold, code, color, italic, strikethrough, underline },
             text,
         } = value;
         return (
             <span
+                key={`${i}-${id}`}
                 className={[
                     bold ? "font-bold" : "",
                     code
@@ -38,32 +40,32 @@ export const renderBlock = (block: any) => {
         case "paragraph":
             return (
                 <p>
-                    <Text text={value.text} />
+                    <Text text={value.text} id={id} />
                 </p>
             );
         case "heading_1":
             return (
                 <h1>
-                    <Text text={value.text} />
+                    <Text text={value.text} id={id} />
                 </h1>
             );
         case "heading_2":
             return (
                 <h2>
-                    <Text text={value.text} />
+                    <Text text={value.text} id={id} />
                 </h2>
             );
         case "heading_3":
             return (
                 <h3>
-                    <Text text={value.text} />
+                    <Text text={value.text} id={id} />
                 </h3>
             );
         case "bulleted_list_item":
         case "numbered_list_item":
             return (
                 <li>
-                    <Text text={value.text} />
+                    <Text text={value.text} id={id} />
                 </li>
             );
         case "to_do":
