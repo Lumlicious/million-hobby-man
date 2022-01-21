@@ -8,7 +8,7 @@ import { getDatabase, getPostList, PostData } from '../lib/notion';
 
 export const databaseId: string = process.env.NOTION_DATABASE_ID as string;
 
-const Home: NextPage = ({ posts }) => {
+const Home: NextPage = ({ posts }: any) => {
   return (
     <SectionContainer>
       <Head>

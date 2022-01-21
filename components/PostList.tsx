@@ -1,7 +1,7 @@
 import { PostData } from "@/lib/notion";
-import Card from "./card";
+import Card from "./Card";
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts }: any) => {
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto">

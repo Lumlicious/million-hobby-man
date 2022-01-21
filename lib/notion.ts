@@ -50,12 +50,12 @@ export const getPostList = (tableData: any): PostData[] => {
     return posts;
 }
 
-export const getPost = async (postId) => {
+export const getPost = async (postId: string) => {
     const response = await notion.pages.retrieve({ page_id: postId });
     return response;
 };
 
-export const getBlocks = async (blockId) => {
+export const getBlocks = async (blockId: string) => {
     const response = await notion.blocks.children.list({
         block_id: blockId,
         page_size: 50,

@@ -1,11 +1,11 @@
 import CodeBlock from "@/components/Codeblock";
 import { Fragment } from "react";
 
-export const Text = ({ text }) => {
+export const Text = ({ text }: any) => {
     if (!text) {
         return null;
     }
-    return text.map((value) => {
+    return text.map((value: any) => {
         const {
             annotations: { bold, code, color, italic, strikethrough, underline },
             text,
@@ -29,7 +29,7 @@ export const Text = ({ text }) => {
     });
 };
 
-export const renderBlock = (block) => {
+export const renderBlock = (block: any) => {
     const { type, id } = block;
     const value = block[type];
     let firstVal = true;
@@ -81,7 +81,7 @@ export const renderBlock = (block) => {
                     <summary>
                         <Text text={value.text} />
                     </summary>
-                    {value.children?.map((block) => (
+                    {value.children?.map((block: any) => (
                         <Fragment key={block.id}>{renderBlock(block)}</Fragment>
                     ))}
                 </details>
