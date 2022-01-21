@@ -1,5 +1,19 @@
 import { Client } from '@notionhq/client';
 
+export interface PostData {
+    id: string,
+    title: string,
+    tags: Tag[],
+    coverImage: string,
+    summary: string,
+    publishedDate: string
+}
+
+export interface Tag {
+    name: string,
+    id: string
+}
+
 const notion = new Client({
     auth: process.env.NOTION_SECRET
 });
@@ -11,10 +25,9 @@ export const getDatabase = async (databaseId: string) => {
     return response.results;
 }
 
-export const getPostList = (tableData: any) => {
+export const getPostList = (tableData: any): PostData[] => {
     let tags: string[] = [];
-    console.log(tableData)
-    const posts = tableData.map((post: any) => {
+    const posts: PostData[] = tableData.map((post: any) => {
         return {
             id: post.id,
             title: post.properties.post.title[0].plain_text,
@@ -30,11 +43,11 @@ export const getPostList = (tableData: any) => {
                 post.properties.coverImage?.files[0]?.external?.url ||
                 'https://via.placeholder.com/600x400.png',
             // publishedDate: post.properties.published.date.start,
-            summary: post.properties?.summary.rich_text[0]?.plain_text
+            summary: post.properties?.summary.rich_text[0]?.plain_text,
+            publishedDate: post.properties.published.date.start
         }
     })
-
-    return { posts, tags };
+    return posts;
 }
 
 export const getPost = async (postId) => {
