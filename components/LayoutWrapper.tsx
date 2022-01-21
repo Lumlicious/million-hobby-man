@@ -6,7 +6,7 @@ import ThemeSwitch from "@/components/ThemeSwitch";
 import MobileNav from "@/components/MobileNav";
 import Footer from '@/components/Footer';
 
-const LayoutWrapper = ({ children }) => {
+const LayoutWrapper = ({ children }: any) => {
   return (
     <SectionContainer>
       <div className="flex flex-col justify-between h-screen">

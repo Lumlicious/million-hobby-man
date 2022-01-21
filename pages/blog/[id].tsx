@@ -60,23 +60,23 @@ export const getStaticPaths = async () => {
     };
 };
 
-export const getStaticProps = async ({ params: { id } }) => {
+export const getStaticProps = async ({ params: { id } }: any) => {
     const page = await getPost(id);
-    const blocks = await getBlocks(id);
+    const blocks: any = await getBlocks(id);
 
     // Retrieve block children for nested blocks (one level deep), for example toggle blocks
     // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
     const childBlocks = await Promise.all(
         blocks
-            .filter((block) => block.has_children)
-            .map(async (block) => {
+            .filter((block: any) => block.has_children)
+            .map(async (block: any) => {
                 return {
                     id: block.id,
                     children: await getBlocks(block.id),
                 };
             })
     );
-    const blocksWithChildren = blocks.map((block) => {
+    const blocksWithChildren = blocks.map((block: any) => {
         // Add child blocks if the block should contain children but none exists
         if (block.has_children && !block[block.type].children) {
             block[block.type]["children"] = childBlocks.find(
